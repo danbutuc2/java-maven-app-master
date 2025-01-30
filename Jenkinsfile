@@ -11,7 +11,9 @@ pipeline {
                 script {
                     echo "init"
                     echo "init pipeline for $BRANCH_NAME"
-                    // gv = load "script.groovy"
+
+                    gv = load "script.groovy"
+
                 }
             }  
         }
