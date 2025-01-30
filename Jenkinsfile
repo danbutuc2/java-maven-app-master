@@ -10,31 +10,47 @@ pipeline {
             steps {
                 script {
                     echo "init"
-                    gv = load "script.groovy"
-            
-            }
+                    echo "init pipeline for $BRANCH_NAME"
+                    // gv = load "script.groovy"
+                }
+            }  
         }
         stage("build jar") {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 script {
                     echo "building jar"
-                    gv.buildJar()
+                    // gv.buildJar()
                 }
             }
         }
         stage("build image") {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 script {
                     echo "building image"
-                    gv.buildImage()
+                    // gv.buildImage()
                 }
             }
         }
         stage("deploy") {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 script {
                     echo "deploying"
-                    gv.deployApp()
+                    // gv.deployApp()
                 }
             }
         }
