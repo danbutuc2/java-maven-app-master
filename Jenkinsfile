@@ -11,8 +11,8 @@ pipeline {
                 script {
                     echo "init"
                     gv = load "script.groovy"
-            
-            }
+                }
+            }  // ✅ This closing bracket was missing
         }
         stage("build jar") {
             steps {
@@ -39,5 +39,4 @@ pipeline {
             }
         }
     }   
-}
 }
