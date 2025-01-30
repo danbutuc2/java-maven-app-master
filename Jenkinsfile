@@ -1,4 +1,4 @@
-//def gv
+def gv
 
 pipeline {
     agent any
@@ -7,15 +7,15 @@ pipeline {
             steps {
                 script {
                     echo "init"
-                    //gv = load "script.groovy"
-                }
+                    gv = load "script.groovy"
+            
             }
         }
         stage("build jar") {
             steps {
                 script {
                     echo "building jar"
-                    //gv.buildJar()
+                    gv.buildJar()
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    //gv.buildImage()
+                    gv.buildImage()
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     echo "deploying"
-                    //gv.deployApp()
+                    gv.deployApp()
                 }
             }
         }
