@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     echo "deploying"
-                    def dockerCmd = 'docker run -p 3080:3080 danbutuc/demo-app:1.0'
+                    def dockerCmd = 'docker run -p 3080:3080 -d danbutuc/demo-app:1.0'
                     sshagent(['ec2-server-key']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@34.244.129.21 ${dockerCmd}"
                     }
