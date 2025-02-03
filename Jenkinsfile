@@ -11,7 +11,9 @@ pipeline {
                 script {
                     echo "init"
                     echo "init pipeline for $BRANCH_NAME"
-                    gv = load "script.groovy"
+
+                    //gv = load "script.groovy"
+
                 }
             }  
         }
@@ -24,7 +26,7 @@ pipeline {
             steps {
                 script {
                     echo "building jar"
-                    gv.buildJar()
+                    // gv.buildJar()
                 }
             }
         }
@@ -37,20 +39,24 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    gv.buildImage()
+                    // gv.buildImage()
                 }
             }
         }
         stage("deploy") {
-            when {
+            /*when {
                 expression {
                     BRANCH_NAME == 'main'
                 }
-            }
+            }*/
             steps {
                 script {
                     echo "deploying"
-                    gv.deployApp()
+                    def dockerCmd = 'docker run -p 3080:3080 danbutuc/demo-app:1.0'
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@34.244.129.21 ${dockerCmd}"
+                    }
+                    // gv.deployApp()
                 }
             }
         }
