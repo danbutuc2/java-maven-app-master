@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   java-maven-app:
-    image: danbutuc/demo-app:1.0  # Add "image" key
+    image: ${IMAGE}
     ports:
       - "8080:8080"
 
